@@ -1,7 +1,9 @@
 {
-  "extends": "@repo/typescript-config/vite.json",
+  "extends": "@repo/typescript-config/base.json",
   "include": ["src"],
   "compilerOptions": {
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "noUnusedLocals": false,
+    "lib": ["DOM", "DOM.Iterable", "ES2015", "ESNext"]
   }
 }

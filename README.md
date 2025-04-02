@@ -1,32 +1,100 @@
-# `Turborepo` Vite starter
+# Turborepo React + Fastify Starter
 
-This is a community-maintained example. If you experience a problem, please submit a pull request with a fix. GitHub Issues will be closed.
+This is a fullstack application built with:
+- **Frontend**: React + Vite (TypeScript)
+- **Backend**: Fastify (TypeScript)
+- **Monorepo**: Turborepo with pnpm workspaces
 
-## Using this example
+## Features
 
-Run the following command:
+- **React Frontend**: Modern UI built with React and TypeScript
+- **Fastify Backend**: Fast and low overhead API server
+- **Turborepo**: Optimized build system with caching
+- **Vercel Deployment**: Ready for deployment on Vercel
 
-```sh
-npx create-turbo@latest -e with-vite-react
+## Project Structure
+
+```
+apps/
+  ├── web/         # React + Vite frontend
+  └── backend/     # Fastify backend API server
+packages/
+  ├── ui/          # Shared UI components
+  └── ...          # Other shared packages
+api/                # Vercel serverless function entry point
 ```
 
-## What's inside?
+## Local Development
 
-This Turborepo includes the following packages and apps:
+1. Install dependencies:
 
-### Apps and Packages
+```bash
+pnpm install
+```
 
-- `web`: react [vite](https://vitejs.dev) ts app
-- `@repo/ui`: a stub component library shared by `web` application
-- `@repo/eslint-config`: shared `eslint` configurations
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+2. Start the development server:
 
-Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
+```bash
+pnpm dev
+```
 
-### Utilities
+This will start both the React frontend and Fastify backend in development mode.
 
-This Turborepo has some additional tools already setup for you:
+## Building for Production
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+To build all applications and packages:
+
+```bash
+pnpm build
+```
+
+## Deploying to Vercel
+
+### Method 1: Direct Deployment
+
+1. Connect your repository to Vercel:
+   - Go to [Vercel Dashboard](https://vercel.com/dashboard)
+   - Click "Add New" > "Project"
+   - Import your Git repository
+   - Select "Turborepo" as the framework preset
+
+2. Configure the project:
+   - **Build Command**: `pnpm build`
+   - **Output Directory**: `apps/web/dist`
+   - **Install Command**: `pnpm install`
+
+3. Add environment variables if needed:
+   - `VITE_API_URL=/api`
+
+4. Deploy!
+
+### Method 2: Using Vercel CLI
+
+1. Install Vercel CLI:
+
+```bash
+npm i -g vercel
+```
+
+2. Login to Vercel:
+
+```bash
+vercel login
+```
+
+3. Deploy the project:
+
+```bash
+vercel
+```
+
+## Using the Deployed App
+
+Once deployed, the application will be available at the Vercel-provided URL with:
+
+- Frontend: Main URL (e.g., `https://your-project.vercel.app`)
+- Backend API: `/api` endpoint (e.g., `https://your-project.vercel.app/api`)
+
+---
+
+Made with ♥ using React, Fastify, TypeScript, and Turborepo
