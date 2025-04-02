@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
   }
 
   // Import the Fastify app only when needed
-  const createApp = require("../apps/backend/dist/index.js");
+  const createApp = require("../apps/backend/dist/index");
 
   try {
     // Forward the request to our Fastify app
