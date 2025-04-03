@@ -1,18 +1,23 @@
 {
   "version": 2,
+  "installCommand": "pnpm install",
   "buildCommand": "pnpm run vercel-build",
   "outputDirectory": "dist",
   "framework": null,
-  "installCommand": "pnpm install",
+  "functions": {
+    "api/[[...route]].js": {
+      "runtime": "nodejs18.x",
+      "memory": 1024
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "destination": "/api/[[...route]]"
+    },
+    {
+      "source": "/((?!api/|_next/|assets/|static/|favicon.ico|vite.svg|sw.js|.*\\..*).*)",
+      "destination": "/index.html"
     }
-  ],
-  "functions": {
-    "api/**/*": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  ]
 }
