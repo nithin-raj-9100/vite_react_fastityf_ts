@@ -1,7 +1,7 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import sensible from "@fastify/sensible";
-import { registerRoutes } from "./routes";
+import { registerRoutes } from "./routes/index.js";
 
 // Create and configure the Fastify app
 function createApp() {

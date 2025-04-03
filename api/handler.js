@@ -1,5 +1,5 @@
 // Import the createApp function from the backend
-import createApp from "../apps/backend/dist/index.js";
+import createApp from "../api/backend-dist/index.js";
 
 export default async function handler(req, res) {
   // Create a new Fastify app instance
