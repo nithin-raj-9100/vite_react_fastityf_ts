@@ -37,11 +37,11 @@ module.exports = async (req, res) => {
     // First try direct module import
     let createApp;
     try {
-      createApp = require("../apps/backend/dist/index").default;
+      createApp = require("./backend/index").default;
     } catch (importError) {
       console.error("Failed to import backend module:", importError);
       // Fallback to commonjs
-      const backend = require("../apps/backend/dist/index");
+      const backend = require("./backend/index");
       createApp = backend.default || backend;
     }
 

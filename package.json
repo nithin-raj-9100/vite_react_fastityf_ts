@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "vercel-build": "turbo run build && mkdir -p dist && cp -r apps/web/dist/* dist/ && mkdir -p dist/api && cp api/[[...route]].js dist/api/ && mkdir -p dist/apps/backend/dist && cp -r apps/backend/dist/* dist/apps/backend/dist/",
+    "vercel-build": "turbo run build && mkdir -p dist && cp -r apps/web/dist/* dist/ && mkdir -p api && cp -r apps/backend/dist api/backend && cp api/[[...route]].js api/",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
@@ -13,5 +13,8 @@
     "turbo": "^2.4.4"
   },
   "packageManager": "pnpm@8.15.6",
-  "name": "with-vite-react"
+  "name": "with-vite-react",
+  "engines": {
+    "node": "18.x"
+  }
 }
