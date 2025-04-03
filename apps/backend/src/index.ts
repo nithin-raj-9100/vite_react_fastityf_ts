@@ -28,6 +28,17 @@ function createApp() {
     return { status: "ok", timestamp: new Date().toISOString() };
   });
 
+  // Debug route to see if Fastify is handling requests properly
+  fastify.get("/api-debug", async (request, reply) => {
+    return {
+      message: "API debug endpoint is working",
+      url: request.url,
+      method: request.method,
+      headers: request.headers,
+      timestamp: new Date().toISOString(),
+    };
+  });
+
   return fastify;
 }
 

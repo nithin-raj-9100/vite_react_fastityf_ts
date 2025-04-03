@@ -10,7 +10,7 @@
     }
   },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/handler.js" },
+    { "source": "/api/:path*", "destination": "/api/handler" },
     { "source": "/(.*)", "destination": "/$1" }
   ]
 }
