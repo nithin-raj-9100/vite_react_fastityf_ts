@@ -3,14 +3,19 @@
   "version": 2,
   "buildCommand": "pnpm -w run vercel-build",
   "outputDirectory": "dist",
+
+  "functions": {
+    "api/index.js": {
+      "memory": 1024,
+      "includeFiles": "apps/backend/dist/**",
+      "maxDuration": 15
+    }
+  },
+
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/serverless.js"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/$1"
+      "destination": "/api/index.js"
     }
   ]
 }
