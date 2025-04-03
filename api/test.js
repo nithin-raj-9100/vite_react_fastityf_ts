@@ -1,4 +1,4 @@
-// Simple test API endpoint to verify routing
+// Simple standalone test endpoint
 export default function handler(req, res) {
   console.log("Test API endpoint called:", req.url);
 
