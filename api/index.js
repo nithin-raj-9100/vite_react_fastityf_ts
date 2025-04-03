@@ -7,6 +7,20 @@ module.exports = async (req, res) => {
     const app = createApp();
 
     await app.ready();
+
+    const fullUrl = new URL(req.url, `http://${req.headers.host}`);
+    const originalPathname = fullUrl.pathname;
+
+    const pathForFastify = originalPathname.startsWith("/api")
+      ? originalPathname.substring(4) || "/" // Remove /api, default to / if empty
+      : originalPathname;
+
+    req.url = pathForFastify + fullUrl.search;
+
+    console.log(
+      `Vercel Request Path: ${originalPathname}, Path passed to Fastify: ${req.url}`
+    );
+
     app.server.emit("request", req, res);
   } catch (error) {
     console.error("Error in Vercel function handler:", error);
