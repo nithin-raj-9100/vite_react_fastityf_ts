@@ -7,13 +7,14 @@
   "functions": {
     "api/[[...route]].js": {
       "runtime": "nodejs18.x",
-      "memory": 1024
+      "memory": 1024,
+      "maxDuration": 10
     }
   },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/[[...route]]"
+      "destination": "/api"
     },
     {
       "source": "/((?!api/|_next/|assets/|static/|favicon.ico|vite.svg|sw.js|.*\\..*).*)",

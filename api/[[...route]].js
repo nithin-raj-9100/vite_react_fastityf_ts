@@ -2,8 +2,7 @@
 // It acts as a proxy to the Fastify backend server
 
 const path = require("path");
-const { exec } = require("child_process");
-const { createReadStream, existsSync } = require("fs");
+const { existsSync } = require("fs");
 
 // Check if the file exists
 function checkFile(file) {
@@ -33,10 +32,23 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Import the Fastify app only when needed
-  const createApp = require("../apps/backend/dist/index");
-
   try {
+    // Import the Fastify app with a relative path that works in the Vercel serverless environment
+    // First try direct module import
+    let createApp;
+    try {
+      createApp = require("../apps/backend/dist/index").default;
+    } catch (importError) {
+      console.error("Failed to import backend module:", importError);
+      // Fallback to commonjs
+      const backend = require("../apps/backend/dist/index");
+      createApp = backend.default || backend;
+    }
+
+    if (!createApp || typeof createApp !== "function") {
+      throw new Error("Backend app export not found or not a function");
+    }
+
     // Forward the request to our Fastify app
     const app = createApp();
 
@@ -47,6 +59,10 @@ module.exports = async (req, res) => {
     app.server.emit("request", req, res);
   } catch (error) {
     console.error("Error handling request:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({
+      error: "Internal Server Error",
+      message: error.message,
+      stack: process.env.NODE_ENV === "development" ? error.stack : undefined,
+    });
   }
 };
