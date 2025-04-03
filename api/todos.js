@@ -32,7 +32,6 @@ module.exports = (req, res) => {
   if (req.method === "GET") {
     return res.status(200).json(todos);
   }
-
   // For any other HTTP method, return 405
   return res.status(405).json({ error: `Method ${req.method} Not Allowed` });
 };

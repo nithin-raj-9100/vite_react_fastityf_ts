@@ -16,5 +16,10 @@
   "name": "with-vite-react",
   "engines": {
     "node": "22.x"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.4.1",
+    "@fastify/sensible": "^5.5.0",
+    "fastify": "^4.24.3"
   }
 }
