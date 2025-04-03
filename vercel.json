@@ -4,10 +4,17 @@
   "buildCommand": "pnpm -w run vercel-build",
   "outputDirectory": "dist",
   "framework": null,
+  "functions": {
+    "api.js": {
+      "runtime": "nodejs22.x",
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/[[...route]].js"
+      "destination": "/api.js"
     },
     {
       "source": "/((?!api/|_next/|assets/|static/|favicon.ico|vite.svg|sw.js|.*\\..*).*)",
