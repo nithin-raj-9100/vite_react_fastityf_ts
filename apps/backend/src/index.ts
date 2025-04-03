@@ -5,13 +5,7 @@ import { registerRoutes } from "./routes/index.js";
 
 // Create and configure the Fastify app
 function createApp() {
-  const fastify = Fastify({
-    logger: {
-      transport: {
-        target: "pino-pretty",
-      },
-    },
-  });
+  const fastify = Fastify();
 
   fastify.register(cors, {
     origin: process.env.FRONTEND_URL || "*",
