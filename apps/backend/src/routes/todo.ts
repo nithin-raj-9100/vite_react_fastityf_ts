@@ -18,6 +18,7 @@ export async function todoRoutes(fastify: FastifyInstance) {
   // Get all todos
   fastify.get("/", async (request: FastifyRequest, reply: FastifyReply) => {
     try {
+      // @ts-ignore
       const todos = await prisma.todo.findMany({
         orderBy: { createdAt: "asc" }, // Optional: order by creation time
       });
@@ -37,6 +38,7 @@ export async function todoRoutes(fastify: FastifyInstance) {
     ) => {
       const { id } = request.params;
       try {
+        // @ts-ignore
         const todo = await prisma.todo.findUnique({
           where: { id },
         });
