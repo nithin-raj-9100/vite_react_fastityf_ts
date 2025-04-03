@@ -1,24 +1,10 @@
 {
   "version": 2,
-  "installCommand": "pnpm install",
   "buildCommand": "pnpm -w run vercel-build",
   "outputDirectory": "dist",
-  "framework": null,
-  "functions": {
-    "api.js": {
-      "runtime": "nodejs22.x",
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  },
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api.js"
-    },
-    {
-      "source": "/((?!api/|_next/|assets/|static/|favicon.ico|vite.svg|sw.js|.*\\..*).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/api/(.*)", "destination": "/api.js" },
+    { "source": "/(.*)", "destination": "/$1" },
+    { "source": "/((?!api).+)", "destination": "/index.html" }
   ]
 }

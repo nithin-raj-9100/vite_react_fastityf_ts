@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "vercel-build": "turbo run build && mkdir -p dist && cp -r apps/web/dist/* dist/ && mkdir -p api/backend && cp -r apps/backend/dist/* api/backend/ && cp api.js ./",
+    "vercel-build": "turbo run build && cp -r apps/web/dist/* dist/ && mkdir -p dist/api && cp -r apps/backend/dist/* dist/api && cp api.js dist/",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
